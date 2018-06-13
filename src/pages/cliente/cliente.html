@@ -1,0 +1,76 @@
+<!--
+  Generated template for the ClientePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Cliente</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-label text-center text-uppercase>{{ cliente.apellido }} {{ cliente.nombre }}</ion-label>
+      <button ion-button icon-only float-left>
+        <ion-icon name="phone-portrait"></ion-icon>
+      </button>
+      <button ion-button icon-only float-right>
+        <ion-icon name="call"></ion-icon>
+      </button>
+      <p text-center text-wrap>{{ cliente.direccion }}</p>
+    </ion-card-header>
+    <!--<ion-card-content>
+
+    </ion-card-content>-->
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header color="light">
+      <ion-title float-left>
+        Pedidos
+      </ion-title>
+      <button ion-button icon-only float-right small text-center (click)="goToAddPedidoPage(cliente.id)">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-list-header>
+    <!--<ion-item-divider color="light">
+
+    </ion-item-divider>-->
+    <!--<ion-grid>
+      <ion-row>
+        <ion-col col-4>Cantidad</ion-col>
+        <ion-col col-4>$ unitario</ion-col>
+        <ion-col col-4 text-right>$ total</ion-col>
+      </ion-row>
+    </ion-grid>-->
+    <button ion-item *ngFor="let pedido of pedidos; let idx = index" (click)="goToEditPedidoPage(idx)">
+      <div text-wrap>
+        COD[{{ pedido.producto_id }}-{{ pedido.presentacion_id }}] {{ pedido.producto.nombre }} x
+        {{ pedido.producto.presentacion }}.
+      </div>
+      <!--<ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <ion-badge color="secondary">{{ pedido.cantidad }}</ion-badge>
+          </ion-col>
+          <ion-col col-4>
+            <ion-badge color="secondary">${{ pedido.precio }}</ion-badge> und
+          </ion-col>
+          <ion-col col-4 text-right>
+            <ion-badge color="secondary">${{ pedido.cantidad * pedido.precio }}</ion-badge> total
+          </ion-col>
+        </ion-row>
+      </ion-grid>-->
+      <div>
+        <span># {{ pedido.cantidad }}</span>
+        <span importe float-right>${{ pedido.precio }}</span>
+      </div>
+      <div text-right>
+        <span importe importe-border-top>${{ pedido.cantidad * pedido.precio }}</span>
+      </div>
+    </button>
+  </ion-list>
+</ion-content>
