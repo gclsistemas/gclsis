@@ -14,20 +14,23 @@ export class ClientePage {
   productos: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log('Hello ClientePage');
+    console.log('ClientePage - constructor');
     this.cliente = navParams.get("cliente");
     this.pedidos = navParams.get("pedidos");
     this.productos = navParams.get("productos");
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ClientePage');
+    console.log('ClientePage - ionViewDidLoad');
   }
 
   goToAddPedidoPage() {
     console.log("Go to add pedido page");
     //this.navCtrl.push(AddPedidoPage, {cliente_id: this.cliente.id, cliente: this.cliente.apellido + ' ' + this.cliente.nombre});
-    this.navCtrl.push(AddPedidoPage, {cliente_id: this.cliente.id, cliente: this.cliente.apellido + ' ' + this.cliente.nombre});
+    this.navCtrl.push(AddPedidoPage, {
+      cliente_id: this.cliente.id,
+      cliente: this.cliente.apellido + ' ' + this.cliente.nombre
+    });
   }
 
   getPedidos() {
@@ -35,8 +38,12 @@ export class ClientePage {
   }
 
   goToEditPedidoPage(idx) {
-    console.log("Go to edit id ", this.pedidos[idx].id, " in pedido page");
-    this.navCtrl.push(EditPedidoPage, {pedido: this.pedidos[idx], cliente: this.cliente.apellido + ' ' + this.cliente.nombre});
+    console.log('ClientePage - goToEditPedidoPage');
+    //console.log("Go to edit id ", this.pedidos[idx].id, " in pedido page");
+    this.navCtrl.push(EditPedidoPage, {
+      pedido: this.pedidos[idx],
+      cliente: this.cliente.apellido + ' ' + this.cliente.nombre
+    });
   }
 
 }

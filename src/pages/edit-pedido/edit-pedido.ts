@@ -36,13 +36,13 @@ export class EditPedidoPage {
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private toast: Toast, public databaseService: DatabaseServiceProvider) {
-    console.log('Hello EditPedidoPage');
-    console.log(navParams.get("pedido"));
+    console.log('EditPedidoPage - constructor');
+    //console.log(navParams.get("pedido"));
     this.getDatos(navParams.get("cliente"), navParams.get("pedido"));
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EditPedidoPage');
+    console.log('EditPedidoPage - ionViewDidLoad');
   }
 
   private getDatos(cliente: string, pedido: any) {
@@ -64,12 +64,13 @@ export class EditPedidoPage {
   }
 
   updatePedido() {
-    console.log('updatePedido EditPedidoPage');
+    console.log('EditPedidoPage - updatePedido');
+    //console.log(this.data);
     //this.toast.show('Se actualizo a ' + this.data.cantidad, '5000', 'center');
     this.databaseService.updatePedido(this.data)
       .then(res => {
         console.log(res);
-        this.toast.show('Data updated', '5000', 'center').subscribe(
+        this.toast.show('Datos actualizados.', '5000', 'center').subscribe(
           toast => {
             this.navCtrl.popToRoot();
           }

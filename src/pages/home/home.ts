@@ -19,10 +19,11 @@ export class HomePage {
   pedidos: any[];
 
   constructor(public navCtrl: NavController, public databaseService: DatabaseServiceProvider, public syncService: SyncServicesProvider) {
-    console.log('Hello Home Page');
+    console.log('HomePage - constructor');
   }
 
   ionViewDidLoad() {
+    console.log('HomePage - ionViewDidLoad');
     //this.downloadDatabase(1);
   }
 
@@ -54,9 +55,10 @@ export class HomePage {
   }
 
   goToClientePage(idx) {
-    console.log("Go to cliente page", this.clientes[idx].id, this.clientes[idx].apellido, this.clientes[idx].nombre);
+    console.log('HomePage - goToClientePage');
+    //console.log("Go to cliente page", this.clientes[idx].id, this.clientes[idx].apellido, this.clientes[idx].nombre);
     let lstPedidos = this.getPedidosCliente(this.clientes[idx].id);
-    console.dir(lstPedidos);
+    //console.dir(lstPedidos);
     this.navCtrl.push(ClientePage, {cliente: this.clientes[idx], pedidos: lstPedidos, productos: this.productos});
   }
 
