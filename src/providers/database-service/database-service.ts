@@ -102,6 +102,23 @@ export class DatabaseServiceProvider {
       .catch(error => Promise.reject(error));
   }
 
+  /**
+   * Obtengo todos los pedidos para enviar al web hosting.
+   * @returns {Promise<any[]>}
+   */
+  getPedidosForWebUpload() {
+    let sql = 'SELECT * FROM pedidos WHERE upload=?';
+    let upload = 0;
+    return this.db.executeSql(sql, [upload])
+      .then(response => {
+        let pedidos = [];
+        for (let index = 0; index < response.rows.length; index++) {
+          pedidos.push(response.rows.item(index));
+        }
+        return pedidos;
+      });
+  }
+
   savePedido(pedido: any) {
     console.log('DatabaseServiceProvider - savePedido');
     let sql = 'INSERT INTO pedidos(title, completed) VALUES(?,?)';
@@ -112,6 +129,27 @@ export class DatabaseServiceProvider {
     console.log('DatabaseServiceProvider - updatePedido');
     let sql = 'UPDATE pedidos SET cantidad=? WHERE id=?';
     return this.db.executeSql(sql, [pedido.cantidad, pedido.id]);
+  }
+
+  /**
+   * Actualiza en base de datos local los pedidos solicitados del web hosting.
+   * @param dato
+   */
+  updatePedidoFromWebDownload(dato: any) {
+    console.log('DatabaseServiceProvider - updatePedidoFromWebDownload');
+    let sql = 'UPDATE pedidos SET cantidad=?, confirmado=?, enviado=? WHERE remote_orden_venta_id=?';
+    this.db.executeSql(sql, [dato.cantidad, dato.confirmado, dato.enviado, dato.remote_orden_venta_id]);
+  }
+
+  /**
+   * Actualiza en base de datos local los pedidos enviados al web hosting.
+   * @param dato
+   */
+  updatePedidoFromWebUpload(dato: any) {
+    console.log('DatabaseServiceProvider - updatePedidoFromWebUpload');
+    let sql = 'UPDATE pedidos SET remote_orden_venta_id=?, remote_orden_venta_detalle_id=?, upload=? WHERE id=?';
+    let upload = 1;
+    this.db.executeSql(sql, [dato.remote_orden_venta_id, dato.remote_orden_venta_detalle_id, upload, dato.id]);
   }
 
 }

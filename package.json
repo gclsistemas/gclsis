@@ -36,7 +36,8 @@
     "zone.js": "0.8.26"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.1.9",
+    "@ionic/app-scripts": "^3.2.0",
+    "@ionic/lab": "1.0.9",
     "typescript": "~2.6.2"
   },
   "description": "Aplicación para realizar pedidos de clientes y enviar al webhosting para su procesamiento final.",

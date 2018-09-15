@@ -12,6 +12,7 @@ import {Toast} from '@ionic-native/toast';
 
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
+import {LoginPage} from '../pages/login/login';
 import {AddPedidoPage} from '../pages/add-pedido/add-pedido';
 import {EditPedidoPage} from "../pages/edit-pedido/edit-pedido";
 import {ClientePage} from "../pages/cliente/cliente";
@@ -20,6 +21,7 @@ import {ClientePage} from "../pages/cliente/cliente";
   declarations: [
     MyApp,
     HomePage,
+    LoginPage,
     ClientePage,
     AddPedidoPage,
     EditPedidoPage
@@ -33,6 +35,7 @@ import {ClientePage} from "../pages/cliente/cliente";
   entryComponents: [
     MyApp,
     HomePage,
+    LoginPage,
     ClientePage,
     AddPedidoPage,
     EditPedidoPage
